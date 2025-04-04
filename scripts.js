@@ -14,47 +14,64 @@ function convertUTCToLocalString(utcDateStr) {
   return utcDate.toLocaleString();
 }
 
+function renderGames(games, showPast = false) {
+  const container = document.getElementById('games-container');
+  container.innerHTML = '';
+
+  const now = new Date();
+  const filtered = games
+    .filter(game => showPast || new Date(game.date) >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  filtered.forEach(game => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.style.opacity = 0;
+    card.style.transition = 'opacity 0.6s ease';
+
+    const timeLink = createTimeLink(game);
+    const localTime = convertUTCToLocalString(game.date);
+    const spotsLeft = game.maxPlayers - game.currentPlayers;
+
+    card.innerHTML = `
+      <div class="game-title">${game.title}</div>
+      <div class="game-date mb-2">
+        🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
+      </div>
+      <div class="mb-1">🧙 Мастер: ${game.dm}</div>
+      <div class="mb-1">📏 Кол-во игроков: ${game.minPlayers}–${game.maxPlayers}</div>
+      <div class="mb-1">📣 Свободных мест: ${spotsLeft > 0 ? spotsLeft : 'Нет'}</div>
+      <div class="mb-1">💰 Стоимость: ${game.price}</div>
+      <p>${game.description}</p>
+    `;
+
+    container.appendChild(card);
+    requestAnimationFrame(() => {
+      card.style.opacity = 1;
+    });
+  });
+}
+
+let allGames = [];
+
 fetch('data/games.json')
   .then(response => response.json())
   .then(games => {
-    const container = document.getElementById('games-container');
-
-    const oldGames = games.filter(it => new Date(it.date) < Date.now())
-
-    const oldGamesCard = document.createElement('div');
-    oldGamesCard.className = 'game-card';
-    oldGamesCard.innerHTML = `
-      <div class="mb-1">Уже проведено игр: ${oldGames.length}</div>
-    `;
-    
-    container.appendChild(oldGamesCard)
-    
-    games.filter(it => !oldGames.includes(it)).forEach(game => {
-      const card = document.createElement('div');
-      card.className = 'game-card';
-
-      const timeLink = createTimeLink(game);
-      const localTime = convertUTCToLocalString(game.date);
-      const spotsLeft = game.maxPlayers - game.currentPlayers;
-
-      card.innerHTML = `
-        <div class="game-title">${game.title}</div>
-        <div class="game-date mb-2">
-          🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
-        </div>
-        <div class="mb-1">🧙 Мастер: ${game.dm}</div>
-        <div class="mb-1">📏 Кол-во Игроков: ${game.minPlayers}–${game.maxPlayers}</div>
-        <div class="mb-1">📣 ${spotsLeft > 0 ? 'Осталось мест: ' + spotsLeft : 'Команда собрана'}</div>
-        <div class="mb-1">🧙 Цена: ${game.price}</div>
-        <p>${game.description}</p>
-      `;
-
-      container.appendChild(card);
-    });
+    allGames = games;
+    renderGames(allGames);
   })
   .catch(error => {
-    console.error("Failed to load games:", error);
+    console.error("Не удалось загрузить список игр:", error);
     document.getElementById('games-container').innerHTML = `
-      <div class="alert alert-danger">⚠️ Не получилось загрузить расписание. Попробуйте позже.</div>
+      <div class="alert alert-danger">⚠️ Не удалось загрузить список игр. Попробуйте позже.</div>
     `;
   });
+
+window.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.getElementById('show-past');
+  if (checkbox) {
+    checkbox.addEventListener('change', () => {
+      renderGames(allGames, checkbox.checked);
+    });
+  }
+});
