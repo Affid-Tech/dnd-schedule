@@ -46,8 +46,7 @@ fetch('data/games.json')
           🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
         </div>
         <div class="mb-1">🧙 Ведущий: ${game.dm}</div>
-        <div class="mb-1">👥 Игроков: ${game.currentPlayers}</div>
-        <div class="mb-1">📏 Минимум/максимум: ${game.minPlayers}–${game.maxPlayers}</div>
+        <div class="mb-1">📏 Кол-во игроков: ${game.minPlayers}–${game.maxPlayers}</div>
         <div class="mb-1">📣 Осталось мест: ${spotsLeft > 0 ? spotsLeft : 'Нет (игра полная)'}</div>
         <div class="mb-1">💰 Взнос: ${game.price}</div>
         <p>${game.description}</p>
