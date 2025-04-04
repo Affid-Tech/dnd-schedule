@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Upcoming Games | Digital Dicebound</title>
+  <title>Расписание | Digital Dicebound</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2&amp;display=swap" rel="stylesheet">
   <style>
@@ -39,56 +39,11 @@
 </head>
 <body>
   <div class="container py-5">
-    <h1 class="mb-4 text-center">🎲 Upcoming Games</h1>
+    <h1 class="mb-4 text-center">🎲 Расписание игр</h1>
     <div id="games-container"></div>
   </div>
 
-  <script>
-    function formatToIsoString(datetime) {
-      const date = new Date(datetime);
-      return date.toISOString().replace(/[-:]/g, '').slice(0, 13); // YYYYMMDDTHH
-    }
-
-    function createTimeLink(game) {
-      const iso = formatToIsoString(game.date);
-      const title = encodeURIComponent("D&D - " + game.title);
-      return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
-    }
-
-    fetch('data/games.json')
-      .then(response => response.json())
-      .then(games => {
-        const container = document.getElementById('games-container');
-
-        games.forEach(game => {
-          const card = document.createElement('div');
-          card.className = 'game-card';
-
-          const timeLink = createTimeLink(game);
-          const localTime = new Date(game.date).toLocaleString();
-          const spotsLeft = game.maxPlayers - game.currentPlayers;
-
-          card.innerHTML = `
-            <div class="game-title">${game.title}</div>
-            <div class="game-date mb-2">
-              🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
-            </div>
-            <div class="mb-1">🧙 DM: ${game.dm}</div>
-            <div class="mb-1">🧑‍🤝‍🧑 Players: ${game.currentPlayers} joined</div>
-            <div class="mb-1">📏 Min/Max Players: ${game.minPlayers}–${game.maxPlayers}</div>
-            <div class="mb-1">📣 Spots Left: ${spotsLeft > 0 ? spotsLeft : 'Full'}</div>
-            <p>${game.description}</p>
-          `;
-
-          container.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error("Failed to load games:", error);
-        document.getElementById('games-container').innerHTML = `
-          <div class="alert alert-danger">⚠️ Failed to load upcoming games. Please try again later.</div>
-        `;
-      });
-  </script>
+  <script src="scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
