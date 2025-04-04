@@ -19,6 +19,16 @@ fetch('data/games.json')
   .then(games => {
     const container = document.getElementById('games-container');
 
+    const oldGames = games.filter(it => new Date(it.date) < Date.now())
+
+    const oldGamesCard = document.createElement('div');
+    oldGamesCard.className = 'game-card';
+    oldGamesCard.innerHTML = `
+      <div class="mb-1">Уже проведено игр: ${oldGames.length}</div>
+    `;
+    
+    container.appendChild(oldGamesCard)
+    
     games.forEach(game => {
       const card = document.createElement('div');
       card.className = 'game-card';
