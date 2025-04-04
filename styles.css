@@ -1,7 +1,7 @@
 body {
   background-color: #121212;
   color: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Exo 2', sans-serif
 }
 
 .game-card {
@@ -18,6 +18,11 @@ body {
   color: #00ffff;
 }
 
+.game-date {
+  color: #ff6ec7;
+  font-weight: 500;
+}
+
 .game-date a {
   color: #ff6ec7;
   text-decoration: none;
@@ -25,6 +30,14 @@ body {
 
 .game-date a:hover {
   text-decoration: underline;
+}
+
+.form-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .form-check-input {
@@ -35,14 +48,20 @@ body {
   cursor: pointer;
   color: #ccc;
   font-size: 1rem;
+  user-select: none;
 }
 
 #past-games-section {
   border-top: 1px solid #444;
   padding-top: 2rem;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 #past-games-container .game-card {
   opacity: 0.7;
+}
+
+#past-games-section h2 {
+  color: #dddddd;
+  font-weight: 600;
 }
