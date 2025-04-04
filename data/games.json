@@ -6,17 +6,7 @@
     "dm": "Affid",
     "minPlayers": 3,
     "maxPlayers": 5,
-    "currentPlayers": 5,
+    "currentPlayers": 3,
     "description": "Приключение о трудном моральном выборе, различиях в видении добра, и, конечно же, о пиве для всемирно известной ролевой игры."
-  },
-  {
-    "title": "Другая игра",
-    "price": "10€ / 10$ / 1000₽",
-    "date": "2025-05-15T16:00:00+03:00",
-    "dm": "Mila V.",
-    "minPlayers": 2,
-    "maxPlayers": 6,
-    "currentPlayers": 0,
-    "description": "Здесь какое-то описание. И еще продолжение описания"
   }
 ]
