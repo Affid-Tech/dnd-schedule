@@ -6,7 +6,7 @@ function formatToIsoString(datetime) {
 function createTimeLink(game) {
   const iso = formatToIsoString(game.date);
   const title = encodeURIComponent("D&D - " + game.title);
-  return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}`;
+  return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
 }
 
 function convertUTCToLocalString(utcDateStr) {
@@ -34,7 +34,7 @@ fetch('data/games.json')
 
     function renderGameCard(game, container, isPast = false) {
       const card = document.createElement('div');
-      card.className = 'game-card';
+      card.className = 'game-card position-relative';
 
       const localTime = convertUTCToLocalString(game.date);
       const spotsLeft = game.maxPlayers - game.currentPlayers;
@@ -43,12 +43,18 @@ fetch('data/games.json')
         ? `<div class="game-date mb-2">🗓 ${localTime}</div>`
         : `<div class="game-date mb-2">🗓 <a href="${createTimeLink(game)}" target="_blank">${localTime}</a></div>`;
 
+      const telegramLink = `https://t.me/Affid_fedorov?text=${encodeURIComponent(`Привет! Хочу записаться на игру ${game.title}!`)}`;
+
+      const signupButton = !isPast
+        ? `<a href="${telegramLink}" target="_blank" class="btn btn-outline-info btn-sm position-absolute top-0 end-0 m-3">Записаться</a>`
+        : '';
+
       card.innerHTML = `
+        ${signupButton}
         <div class="game-title">${game.title}</div>
         ${dateContent}
-        <div class="mb-1">🧙 Ведущий: ${game.dm}</div>
-        <div class="mb-1">👥 Игроков: ${game.currentPlayers}</div>
-        <div class="mb-1">📏 Минимум/максимум: ${game.minPlayers}–${game.maxPlayers}</div>
+        <div class="mb-1">🧙 Мастер: ${game.dm}</div>
+        <div class="mb-1">📏 Кол-во игроков: ${game.minPlayers}–${game.maxPlayers}</div>
         <div class="mb-1">📣 Осталось мест: ${spotsLeft > 0 ? spotsLeft : 'Нет (игра полная)'}</div>
         <div class="mb-1">💰 Взнос: ${game.price}</div>
         <p>${game.description}</p>
