@@ -62,6 +62,6 @@ body {
 }
 
 #past-games-section h2 {
-  color: #dddddd;
+  --bs-secondary-color: #ddd;
   font-weight: 600;
 }
