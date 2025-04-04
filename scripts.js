@@ -71,7 +71,7 @@ fetch('data/games.json')
     });
 
     if(pastGames.length === 0){
-      toggle.style.display = 'none';
+      toggle.parentElement.style.display = 'none';
     }
 
   })
