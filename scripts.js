@@ -27,10 +27,9 @@ fetch('data/games.json')
         <div class="game-date mb-2">
           🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
         </div>
-        <div class="mb-1">🧙 DM: ${game.dm}</div>
-        <div class="mb-1">🧑‍🤝‍🧑 Players: ${game.currentPlayers} joined</div>
-        <div class="mb-1">📏 Min/Max Players: ${game.minPlayers}–${game.maxPlayers}</div>
-        <div class="mb-1">📣 Spots Left: ${spotsLeft > 0 ? spotsLeft : 'Full'}</div>
+        <div class="mb-1">🧙 Мастер: ${game.dm}</div>
+        <div class="mb-1">📏 Кол-во Игроков: ${game.minPlayers}–${game.maxPlayers}</div>
+        <div class="mb-1">📣 ${spotsLeft > 0 ? 'Осталось мест: ' + spotsLeft : 'Команда собрана'}</div>
         <p>${game.description}</p>
       `;
 
@@ -40,6 +39,6 @@ fetch('data/games.json')
   .catch(error => {
     console.error("Failed to load games:", error);
     document.getElementById('games-container').innerHTML = `
-      <div class="alert alert-danger">⚠️ Failed to load upcoming games. Please try again later.</div>
+      <div class="alert alert-danger">⚠️ Не получилось загрузить расписание. Попробуй позже.</div>
     `;
   });
