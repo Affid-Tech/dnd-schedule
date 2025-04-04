@@ -1,7 +1,7 @@
 body {
   background-color: #121212;
   color: #ffffff;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .game-card {
@@ -25,4 +25,29 @@ body {
 
 .game-date a:hover {
   text-decoration: underline;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  color: #ccc;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.form-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.alert-danger {
+  background-color: #8b0000;
+  color: #fff;
+  border: none;
 }
