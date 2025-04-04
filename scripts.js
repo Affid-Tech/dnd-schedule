@@ -9,6 +9,11 @@ function createTimeLink(game) {
   return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
 }
 
+function convertUTCToLocalString(utcDateStr) {
+  const utcDate = new Date(utcDateStr);
+  return utcDate.toLocaleString();
+}
+
 fetch('data/games.json')
   .then(response => response.json())
   .then(games => {
@@ -19,7 +24,7 @@ fetch('data/games.json')
       card.className = 'game-card';
 
       const timeLink = createTimeLink(game);
-      const localTime = new Date(game.date).toLocaleString();
+      const localTime = convertUTCToLocalString(game.date);
       const spotsLeft = game.maxPlayers - game.currentPlayers;
 
       card.innerHTML = `
