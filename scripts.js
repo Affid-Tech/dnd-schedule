@@ -1,3 +1,19 @@
+function formatToIsoString(datetime) {
+  const date = new Date(datetime);
+  return date.toISOString().replace(/[-:]/g, '').slice(0, 13); // YYYYMMDDTHH
+}
+
+function createTimeLink(game) {
+  const iso = formatToIsoString(game.date);
+  const title = encodeURIComponent("D&D - " + game.title);
+  return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
+}
+
+function convertUTCToLocalString(utcDateStr) {
+  const utcDate = new Date(utcDateStr);
+  return utcDate.toLocaleString();
+}
+
 fetch('data/games.json')
   .then(response => response.json())
   .then(games => {
@@ -30,7 +46,8 @@ fetch('data/games.json')
           🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
         </div>
         <div class="mb-1">🧙 Ведущий: ${game.dm}</div>
-        <div class="mb-1">📏 Кол-во игроков: ${game.minPlayers}–${game.maxPlayers}</div>
+        <div class="mb-1">👥 Игроков: ${game.currentPlayers}</div>
+        <div class="mb-1">📏 Минимум/максимум: ${game.minPlayers}–${game.maxPlayers}</div>
         <div class="mb-1">📣 Осталось мест: ${spotsLeft > 0 ? spotsLeft : 'Нет (игра полная)'}</div>
         <div class="mb-1">💰 Взнос: ${game.price}</div>
         <p>${game.description}</p>
