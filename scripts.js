@@ -32,21 +32,23 @@ fetch('data/games.json')
       .filter(game => new Date(game.date) < now)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    function renderGameCard(game, container) {
+    function renderGameCard(game, container, isPast = false) {
       const card = document.createElement('div');
       card.className = 'game-card';
 
-      const timeLink = createTimeLink(game);
       const localTime = convertUTCToLocalString(game.date);
       const spotsLeft = game.maxPlayers - game.currentPlayers;
 
+      const dateContent = isPast
+        ? `<div class="game-date mb-2">🗓 ${localTime}</div>`
+        : `<div class="game-date mb-2">🗓 <a href="${createTimeLink(game)}" target="_blank">${localTime}</a></div>`;
+
       card.innerHTML = `
         <div class="game-title">${game.title}</div>
-        <div class="game-date mb-2">
-          🗓 <a href="${timeLink}" target="_blank">${localTime}</a>
-        </div>
+        ${dateContent}
         <div class="mb-1">🧙 Ведущий: ${game.dm}</div>
-        <div class="mb-1">📏 Кол-во игроков: ${game.minPlayers}–${game.maxPlayers}</div>
+        <div class="mb-1">👥 Игроков: ${game.currentPlayers}</div>
+        <div class="mb-1">📏 Минимум/максимум: ${game.minPlayers}–${game.maxPlayers}</div>
         <div class="mb-1">📣 Осталось мест: ${spotsLeft > 0 ? spotsLeft : 'Нет (игра полная)'}</div>
         <div class="mb-1">💰 Взнос: ${game.price}</div>
         <p>${game.description}</p>
@@ -56,7 +58,7 @@ fetch('data/games.json')
     }
 
     upcomingGames.forEach(game => renderGameCard(game, upcomingContainer));
-    pastGames.forEach(game => renderGameCard(game, pastContainer));
+    pastGames.forEach(game => renderGameCard(game, pastContainer, true));
 
     toggle.addEventListener('change', () => {
       pastSection.style.display = toggle.checked ? 'block' : 'none';
