@@ -35,6 +35,7 @@ fetch('data/games.json')
         <div class="mb-1">🧙 Мастер: ${game.dm}</div>
         <div class="mb-1">📏 Кол-во Игроков: ${game.minPlayers}–${game.maxPlayers}</div>
         <div class="mb-1">📣 ${spotsLeft > 0 ? 'Осталось мест: ' + spotsLeft : 'Команда собрана'}</div>
+        <div class="mb-1">🧙 Цена: ${game.price}</div>
         <p>${game.description}</p>
       `;
 
