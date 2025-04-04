@@ -44,6 +44,6 @@ fetch('data/games.json')
   .catch(error => {
     console.error("Failed to load games:", error);
     document.getElementById('games-container').innerHTML = `
-      <div class="alert alert-danger">⚠️ Не получилось загрузить расписание. Попробуй позже.</div>
+      <div class="alert alert-danger">⚠️ Не получилось загрузить расписание. Попробуйте позже.</div>
     `;
   });
