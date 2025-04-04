@@ -23,11 +23,16 @@
 </head>
 <body>
   <div class="container py-5">
-    <h1 class="mb-4 text-center">🎲 Расписание игр</h1>
+    <h1 class="mb-4 text-center">🎲 Предстоящие игры</h1>
+
+    <div class="form-check form-switch text-center">
+      <input class="form-check-input" type="checkbox" id="show-past">
+      <label class="form-check-label" for="show-past">Показывать прошедшие игры</label>
+    </div>
+
     <div id="games-container"></div>
   </div>
 
-  <script src="scripts.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/games.js"></script>
 </body>
 </html>
