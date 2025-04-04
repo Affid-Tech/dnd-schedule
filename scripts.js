@@ -45,7 +45,7 @@ fetch('data/games.json')
 
       const telegramLink = `https://t.me/Affid_fedorov?text=${encodeURIComponent(`Привет! Хочу записаться на игру ${game.title}!`)}`;
 
-      const signupButton = !isPast
+      const signupButton = !isPast && spotsLeft > 0
         ? `<a href="${telegramLink}" target="_blank" class="btn btn-outline-info btn-sm position-absolute top-0 end-0 m-3">Записаться</a>`
         : '';
 
