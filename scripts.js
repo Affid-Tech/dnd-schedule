@@ -70,6 +70,10 @@ fetch('data/games.json')
       pastSection.style.display = toggle.checked ? 'block' : 'none';
     });
 
+    if(pastGames.length === 0){
+      toggle.style.display = 'none';
+    }
+
   })
   .catch(error => {
     console.error("Не удалось загрузить игры:", error);
