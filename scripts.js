@@ -29,7 +29,7 @@ fetch('data/games.json')
     
     container.appendChild(oldGamesCard)
     
-    games.forEach(game => {
+    games.filter(it => !oldGames.contains(it)).forEach(game => {
       const card = document.createElement('div');
       card.className = 'game-card';
 
