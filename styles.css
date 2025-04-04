@@ -1,0 +1,28 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.game-card {
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00ffff;
+}
+
+.game-date a {
+  color: #ff6ec7;
+  text-decoration: none;
+}
+
+.game-date a:hover {
+  text-decoration: underline;
+}
