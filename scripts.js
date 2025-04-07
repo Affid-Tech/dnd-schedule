@@ -10,7 +10,7 @@ function createTimeLink(game) {
   
   const iso = formatToIsoString(game.date);
   const title = encodeURIComponent("D&D - " + game.title);
-  return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
+  return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=${game.duration}`;
 }
 
 function convertUTCToLocalString(utcDateStr) {
