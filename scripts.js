@@ -14,6 +14,44 @@ function convertUTCToLocalString(utcDateStr) {
   return utcDate.toLocaleString();
 }
 
+function sortGames(a,b){
+  const dateResult = sortByDate(a,b);
+
+  if(dateResult != 0){
+    return dateResult;
+  }
+
+  return sortByName(a,b);
+}
+
+function sortByDate(a, b){
+  let dateA = new Date(a.date);
+  let dateB = new Date(b.date);
+  
+  if(dateA == dateB){
+    return 0;
+  }
+
+  if(dateA == "Invlaid Date"){
+    return -1;
+  }
+  if(dateB == "Invalid Date"){
+    return 1;
+  }
+
+  return dateB - dateA;
+}
+
+function sortByName(a, b){
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
+
 fetch('data/games.json')
   .then(response => response.json())
   .then(games => {
@@ -25,12 +63,12 @@ fetch('data/games.json')
     const now = new Date();
 
     const upcomingGames = games
-      .filter(game => new Date(game.date) >= now)
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
+      .filter(game => new Date(game.date) == "Invalid Date" || new Date(game.date) >= now)
+      .sort((a, b) => sortGames(a,b)));
 
     const pastGames = games
       .filter(game => new Date(game.date) < now)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
+      .sort((a, b) => sortGames(b, a));
 
     function renderGameCard(game, container, isPast = false) {
       const card = document.createElement('div');
