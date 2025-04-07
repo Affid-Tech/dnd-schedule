@@ -47,7 +47,7 @@ function sortByDate(a, b){
     return -1;
   }
 
-  return dateB - dateA;
+  return dateA - dateB;
 }
 
 function sortByName(a, b){
