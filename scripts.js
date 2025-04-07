@@ -4,6 +4,10 @@ function formatToIsoString(datetime) {
 }
 
 function createTimeLink(game) {
+  if(new Date(game.date) == "Invalid Date"){
+    return "https://t.me/dnd_digital_dicebound";
+  }
+  
   const iso = formatToIsoString(game.date);
   const title = encodeURIComponent("D&D - " + game.title);
   return `https://www.timeanddate.com/worldclock/fixedtime.html?msg=${title}&iso=${iso}&p1=534&ah=5`;
@@ -11,6 +15,10 @@ function createTimeLink(game) {
 
 function convertUTCToLocalString(utcDateStr) {
   const utcDate = new Date(utcDateStr);
+  if(utcDate == "Invalid Date"){
+    return utcDateStr;
+  }
+  
   return utcDate.toLocaleString();
 }
 
