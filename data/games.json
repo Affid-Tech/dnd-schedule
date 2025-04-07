@@ -2,8 +2,9 @@
   {
     "title": "Фестиваль урожая",
     "price": "Бесплатно",
-    "date": "Скоро",
+    "date": "2025-04-20T14:00:00+03:00",
     "dm": "Саша",
+    "duration": 4,
     "minPlayers": 3,
     "maxPlayers": 5,
     "currentPlayers": 0,
@@ -14,6 +15,7 @@
     "price": "Бесплатно",
     "date": "2025-04-26T10:00:00+02:00",
     "dm": "Affid",
+    "duration": 5,
     "minPlayers": 3,
     "maxPlayers": 5,
     "currentPlayers": 5,
