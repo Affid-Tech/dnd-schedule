@@ -41,10 +41,10 @@ function sortByDate(a, b){
   }
 
   if(dateA == "Invlaid Date"){
-    return -1;
+    return 1;
   }
   if(dateB == "Invalid Date"){
-    return 1;
+    return -1;
   }
 
   return dateB - dateA;
