@@ -64,7 +64,7 @@ fetch('data/games.json')
 
     const upcomingGames = games
       .filter(game => new Date(game.date) == "Invalid Date" || new Date(game.date) >= now)
-      .sort((a, b) => sortGames(a,b)));
+      .sort((a, b) => sortGames(a,b));
 
     const pastGames = games
       .filter(game => new Date(game.date) < now)
