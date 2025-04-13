@@ -129,14 +129,6 @@ fetch('data/games.json')
     `;
   });
 
-
-
-
-
-
-});
-
-
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar');
 
