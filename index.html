@@ -20,6 +20,10 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Exo+2&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+<link type="text/css" rel="stylesheet" href="https://cdn.daypilot.org/daypilot-lite.min.css" />
+<script src="https://cdn.daypilot.org/daypilot-lite.min.js"></script>
+
 </head>
 <body>
   <div class="container py-5">
@@ -41,5 +45,15 @@
   </div>
 
   <script src="scripts.js"></script>
+
+<section>
+  <h2>Недельный вид</h2>
+  <div style="margin-bottom: 10px;">
+    <button onclick="prevWeek()">← Назад</button>
+    <button onclick="nextWeek()">Вперёд →</button>
+  </div>
+  <div id="weekly-schedule" style="width: 100%; height: 600px; margin-top: 20px;"></div>
+</section>
+
 </body>
 </html>

@@ -128,3 +128,54 @@ fetch('data/games.json')
       <div class="alert alert-danger">⚠️ Не удалось загрузить игры. Попробуйте позже.</div>
     `;
   });
+
+
+// === DayPilot Weekly Scheduler ===
+const scheduler = new DayPilot.Scheduler("weekly-schedule", {
+  startDate: DayPilot.Date.today().firstDayOfWeek(),
+  days: 7,
+  scale: "Hour",
+  cellDuration: 60,
+  startHour: 10,
+  endHour: 24,
+  timeHeaders: [
+    { groupBy: "Day", format: "dddd dd.MM" },
+    { groupBy: "Hour" }
+  ],
+  resources: [
+    { name: "Игры", id: "games" }
+  ],
+  events: [
+    {
+      id: 1,
+      text: "Подземелья Чикен Карри\nмастер: Бреганов",
+      start: "2025-04-15T18:00:00",
+      end: "2025-04-15T22:00:00",
+      resource: "games",
+      backColor: "#8e44ad"
+    },
+    {
+      id: 2,
+      text: "Кампания: Долина теней\nмастер: Тень",
+      start: "2025-04-17T20:00:00",
+      end: "2025-04-17T23:30:00",
+      resource: "games",
+      backColor: "#2980b9"
+    }
+  ],
+  onTimeRangeSelected: function(args) {
+    DayPilot.Modal.alert("Здесь может быть форма для добавления игры");
+    scheduler.clearSelection();
+  }
+});
+scheduler.init();
+
+function prevWeek() {
+  scheduler.startDate = scheduler.startDate.addDays(-7);
+  scheduler.update();
+}
+
+function nextWeek() {
+  scheduler.startDate = scheduler.startDate.addDays(7);
+  scheduler.update();
+}
