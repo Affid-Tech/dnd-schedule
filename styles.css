@@ -65,3 +65,98 @@ body {
   --bs-secondary-color: #ddd;
   font-weight: 600;
 }
+
+
+/* FullCalendar Custom Styles */
+.calendar-container {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fc {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.fc-toolbar-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.fc-timegrid-event {
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.fc-event-title {
+  white-space: pre-line;
+}
+
+.fc-scrollgrid {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+
+/* === FullCalendar Custom Styling to match dark theme === */
+
+.fc {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Exo 2', sans-serif;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  padding: 1rem;
+}
+
+.fc .fc-toolbar-title {
+  color: #00ffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.fc .fc-event {
+  background-color: #292929;
+  border: none;
+  border-radius: 1rem;
+  padding: 2px 6px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  font-size: 0.9rem;
+  white-space: pre-line;
+}
+
+.fc .fc-event:hover {
+  filter: brightness(1.2);
+}
+
+.fc .fc-timegrid-slot {
+  border-color: #2c2c2c;
+}
+
+.fc .fc-scrollgrid {
+  border-color: #333;
+}
+
+.fc .fc-timegrid-axis-cushion {
+  color: #888;
+}
+
+.fc .fc-day-today {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.fc .fc-col-header-cell-cushion {
+  color: #ff6ec7;
+  font-weight: 500;
+}
+
+#calendar {
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
