@@ -133,35 +133,43 @@ fetch('data/games.json')
 
 
 
+
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar');
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridWeek',
-    headerToolbar: false,
-    height: 650,
-    events: [
-      {
-        title: 'Подземелья Чикен Карри\nмастер: Бреганов',
-        start: '2025-04-15T18:00:00',
-        end: '2025-04-15T22:00:00',
-        color: '#8e44ad'
-      },
-      {
-        title: 'Кампания: Долина теней\nмастер: Тень',
-        start: '2025-04-17T20:00:00',
-        end: '2025-04-17T23:30:00',
-        color: '#2980b9'
-      }
-    ]
-  });
 
-  calendar.render();
+  fetch('data/games.json')
+    .then(response => response.json())
+    .then(data => {
+      const events = data.map(game => {
+        const start = new Date(game.date);
+        const end = new Date(start.getTime() + game.duration * 60 * 60 * 1000);
 
-  window.calendarPrev = function () {
-    calendar.prev();
-  };
+        return {
+          title: `${game.title}\nмастер: ${game.dm}`,
+          start: start.toISOString(),
+          end: end.toISOString(),
+          color: '#2c3e50'  // можно добавить цвет по мастеру
+        };
+      });
 
-  window.calendarNext = function () {
-    calendar.next();
-  };
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        headerToolbar: false,
+        height: 650,
+        events: events
+      });
+
+      calendar.render();
+
+      window.calendarPrev = function () {
+        calendar.prev();
+      };
+
+      window.calendarNext = function () {
+        calendar.next();
+      };
+    });
 });
