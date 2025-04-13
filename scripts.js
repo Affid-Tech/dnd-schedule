@@ -157,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
         height: 650,
         events: events,
         scrollTime: "10:00:00",
-        firstDay: 1
+        firstDay: 1,
+        slotDuration: "01:00:00"
       });
 
       calendar.render();
