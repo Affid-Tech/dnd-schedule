@@ -53,10 +53,17 @@
 
 
 <section>
-  <h2>Недельный вид</h2>
-  <div style="margin-bottom: 10px;">
-    <button onclick="calendarPrev()">← Назад</button>
-    <button onclick="calendarNext()">Вперёд →</button>
+  <div style="
+    display: flex;
+    justify-content: center;
+    ">
+    <button onclick="calendarPrev()" class="btn btn-outline-info btn-sm m-3">← Назад</button>
+    <span class="game-title" style="
+    font-size: 2rem;
+    vertical-align: middle;
+    align-items: center;
+    align-content: center;
+">Недельный вид</span><button onclick="calendarNext()" class="btn btn-outline-info btn-sm m-3">Вперёд →</button>
   </div>
   <div class='calendar-container'>
 <div id='calendar' style="max-width: 100%;"></div>
