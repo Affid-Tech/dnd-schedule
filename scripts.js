@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
           center: 'title',
           right: 'timeGridWeek,timeGridDay'
         },
+        expandRows: true,
         height: 650,
         events: events,
         scrollTime: "10:00:00",
