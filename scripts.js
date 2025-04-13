@@ -131,6 +131,8 @@ fetch('data/games.json')
 
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar');
+  const isMobile = window.innerWidth < 768;
+  const baseView =isMobile ? 'listWeek' : 'timeGridWeek';
 
   fetch('data/games.json')
     .then(response => response.json())
@@ -140,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const end = new Date(start.getTime() + game.duration * 60 * 60 * 1000);
 
         return {
-          title: `${game.title}\nмастер: ${game.dm}`,
+          title: `${game.title}\nМастер: ${game.dm}`,
           start: start.toISOString(),
           end: end.toISOString(),
           color: '#2c3e50'  // можно добавить цвет по мастеру
@@ -148,12 +150,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
+        initialView: baseView,
         headerToolbar: {
           left: 'prev,next',
           center: 'title',
-          right: 'timeGridWeek,timeGridDay'
+          right: `${baseView},timeGridDay`
         },
+        locale: "ru",
         expandRows: true,
         height: 650,
         events: events,
