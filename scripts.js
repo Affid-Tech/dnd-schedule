@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch('data/games.json')
     .then(response => response.json())
     .then(data => {
-      const events = data.map(game => {
+      const events = data.filter(game => new Date(game.date) != "Invalid Date").map(game => {
         const start = new Date(game.date);
         const end = new Date(start.getTime() + game.duration * 60 * 60 * 1000);
 
