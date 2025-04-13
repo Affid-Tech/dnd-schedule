@@ -149,19 +149,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
-        headerToolbar: false,
+        headerToolbar: {
+          left: 'prev,next',
+          center: 'title',
+          right: 'timeGridWeek,timeGridDay'
+        },
         height: 650,
-        events: events
+        events: events,
+        scrollTime: "10:00:00",
+        firstDay: 1
       });
 
       calendar.render();
-
-      window.calendarPrev = function () {
-        calendar.prev();
-      };
-
-      window.calendarNext = function () {
-        calendar.next();
-      };
     });
 });
