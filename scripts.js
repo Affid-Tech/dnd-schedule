@@ -5,7 +5,7 @@ function formatToIsoString(datetime) {
 
 function createTimeLink(game) {
   if(new Date(game.date) == "Invalid Date"){
-    return "https://t.me/dnd_games";
+    return "https://t.me/games_dnd";
   }
   
   const iso = formatToIsoString(game.date);
